@@ -46,6 +46,11 @@ namespace GamesManager.View
             }
         }
 
+        /// <summary>
+        /// Вызов редактора
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lbContent_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var sours = e.OriginalSource as Border;
@@ -54,12 +59,16 @@ namespace GamesManager.View
                 return;
             }
             var games = sours.DataContext as BL.ViewGames;
-            View.WindowChangeGame window = new WindowChangeGame();
+            View.WindowChangeGame window = new WindowChangeGame(games);
             window.Show();
             this.Close();
         }
 
-
+        /// <summary>
+        /// Поиск
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             var s = content.Where(x => x.Games.Name.ToUpper().StartsWith(tbSearch.Text.ToUpper())).ToList();
@@ -74,6 +83,11 @@ namespace GamesManager.View
             Run(s);
         }
 
+        /// <summary>
+        /// Получение кол-ва кнопок
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
         public static int GetCountButton(int count)
         {
             if(count % 15 == 0)
@@ -86,11 +100,22 @@ namespace GamesManager.View
             }
         }
 
+        /// <summary>
+        /// Получение минимального кол-во кнопок
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public static int IntMin(int list)
         {
             return (list * 15) - 15;
         }
 
+        /// <summary>
+        /// Разделение контонта на страницы
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="Maxcount"></param>
+        /// <returns></returns>
         public static int CountContent(int start, int Maxcount)
         {
             int rez = Maxcount - start;
@@ -104,6 +129,13 @@ namespace GamesManager.View
             }
         }
         
+        /// <summary>
+        /// Создание кнопок
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="content"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
         private Button CreateButton (string name, string content, RoutedEventHandler action)
         {
             var b = new Button() { Name = name, Content = content, Margin = new Thickness(5) };
@@ -114,6 +146,13 @@ namespace GamesManager.View
             return b;
         }
 
+
+
+        /// <summary>
+        /// Кнопка назад
+        /// </summary>
+        /// <param name="Sender"></param>
+        /// <param name="e"></param>
         private void btDown_Click(object Sender, RoutedEventArgs e)
         {
             if (actualList > 1)
@@ -131,6 +170,12 @@ namespace GamesManager.View
             var s = IntMin(actualList);
             RefreshContent(s, CountContent(s, content.Count), content);
         }
+
+        /// <summary>
+        /// Кнопка вперед
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btUp_Click(object sender, RoutedEventArgs e)
         {
             if(actualList < actualMax)
@@ -142,6 +187,14 @@ namespace GamesManager.View
         }
 
 
+
+
+        /// <summary>
+        /// Обновление контента
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="games"></param>
         private void RefreshContent(int start, int end, List<ViewGames> games)
         {
             List<BL.ViewGames> s = new List<ViewGames>();
@@ -159,6 +212,10 @@ namespace GamesManager.View
             lbCol.Content = $"Выведено: {lbContent.Items.Count} игр";
         }
 
+        /// <summary>
+        /// Динамическое создание кнопок
+        /// </summary>
+        /// <param name="count"></param>
         private void DinamycStackButton(int count)
         {
             spButtons.Children.Clear();
@@ -173,6 +230,10 @@ namespace GamesManager.View
             spButtons.Children.Add(CreateButton("btUp", ">>", btUp_Click));
         }
 
+        /// <summary>
+        /// Запуск
+        /// </summary>
+        /// <param name="games"></param>
         private void Run(List<BL.ViewGames> games)
         {
             lbContent.ItemsSource = null;
@@ -184,6 +245,8 @@ namespace GamesManager.View
             lbList.Content = $"Лист: {actualList}";
             lbCol.Content = $"Выведено: {lbContent.Items.Count} игр";
         }
+
+
         private List<ViewGames> GetContent()
         {
             try
@@ -196,13 +259,22 @@ namespace GamesManager.View
             }
         }
 
+        /// <summary>
+        /// Добавление игры
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btAddGame_Click(object sender, RoutedEventArgs e)
         {
             View.WindowAddGame addGame = new WindowAddGame();
             addGame.Show();
             this.Close();
         }
-
+        /// <summary>
+        /// Выход
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btExist_Click(object sender, RoutedEventArgs e)
         {
             View.WindowMenu menu = new WindowMenu();
@@ -210,6 +282,11 @@ namespace GamesManager.View
             this.Close();
         }
 
+        /// <summary>
+        /// Фильтрация
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch (cbSort.SelectedItem.ToString())
@@ -221,18 +298,27 @@ namespace GamesManager.View
             }
         }
 
+        /// <summary>
+        /// Сортировка Ubisoft
+        /// </summary>
         private void SortUbisoft()
         {
             content = content.OrderBy(x => x.UbisoftID).ToList();
             Run(content);
         }
 
+        /// <summary>
+        /// Сортировка Epic Games
+        /// </summary>
         private void SortEpicGames()
         {
             content = content.OrderBy(x => x.EpicID).ToList();
             Run(content);
         }
-
+        
+        /// <summary>
+        /// Сортировка Steam
+        /// </summary>
         private void SortSteam()
         {
             content = content.OrderBy(x => x.SteamID).ToList();

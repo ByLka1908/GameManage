@@ -9,6 +9,10 @@ namespace GamesManager.Controller
 {
     class ControllerGame
     {
+        /// <summary>
+        /// Вывод данных из бд
+        /// </summary>
+        /// <returns></returns>
         public static List<BL.ViewGames> GetViewGames()
         {
             try
@@ -30,6 +34,16 @@ namespace GamesManager.Controller
             }
         }
 
+        /// <summary>
+        /// Добавление игры в бд
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="price"></param>
+        /// <param name="steam"></param>
+        /// <param name="epic"></param>
+        /// <param name="ubisoft"></param>
+        /// <returns></returns>
         internal static bool AddGame(string name, string description, string price, 
             object steam, object epic, object ubisoft)
         {
@@ -66,6 +80,12 @@ namespace GamesManager.Controller
             
         }
 
+        #region Получение Id
+        /// <summary>
+        /// Получение Id Steam
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         private static int GetIdSteam(string name)
         {
             try
@@ -79,6 +99,11 @@ namespace GamesManager.Controller
             }
         }
 
+        /// <summary>
+        /// Получение Id Epic Games
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         private static int GetIdEpic(string name)
         {
             try
@@ -92,6 +117,11 @@ namespace GamesManager.Controller
             }
         }
 
+        /// <summary>
+        /// Получение Id Ubisoft Store
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         private static int GetIdUbisoft(string name)
         {
             try
@@ -104,6 +134,12 @@ namespace GamesManager.Controller
                 throw new Exception("Магазин не найден");
             }
         }
+        #endregion
+
+        /// <summary>
+        /// Удаление игры
+        /// </summary>
+        /// <param name="games"></param>
         internal static void Remove(DB.Games games)
         {
             try
@@ -118,6 +154,17 @@ namespace GamesManager.Controller
             }
         }
 
+        /// <summary>
+        /// Изменение игры
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="price"></param>
+        /// <param name="steam"></param>
+        /// <param name="epic"></param>
+        /// <param name="ubisoft"></param>
+        /// <param name="game"></param>
+        /// <returns></returns>
         internal static bool ChaneGame(string name, string description, string price, object steam, object epic, object ubisoft, DB.Games game)
         {
             DB.EZEntities entities = new DB.EZEntities();

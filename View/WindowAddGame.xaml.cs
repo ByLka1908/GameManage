@@ -25,6 +25,7 @@ namespace GamesManager.View
             this.Loaded += WindowAddGame_Loaded;
         }
 
+
         private void WindowAddGame_Loaded(object sender, RoutedEventArgs e)
         {
             try
@@ -37,6 +38,11 @@ namespace GamesManager.View
             }
         }
 
+        /// <summary>
+        /// Кнопка закрыть
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btDn_Click(object sender, RoutedEventArgs e)
         {
             View.WindowAllGames window = new WindowAllGames();
@@ -44,6 +50,9 @@ namespace GamesManager.View
             this.Close();
         }
 
+        /// <summary>
+        /// Запуск прогр
+        /// </summary>
         private void Run()
         {
             cbEpic.ItemsSource = Controller.ControllerLibaryGames.GetEpicComboBox();
@@ -51,6 +60,7 @@ namespace GamesManager.View
             cbUbisoft.ItemsSource = Controller.ControllerLibaryGames.GetUbisoftComboBox();
             cbImage.ItemsSource = Controller.ControllerImage.GetImages();            
         }
+
         /// <summary>
         /// Кнопка Добавить
         /// </summary>

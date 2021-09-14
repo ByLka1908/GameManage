@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GamesManager.BL
 {
+    /// <summary>
+/// Получение Имени и пути изображения
+/// </summary>
     class Image
     {
         public string ImagePath { get; set; }

@@ -10,6 +10,10 @@ namespace GamesManager.Controller
 {
     class ControllerImage
     {
+        /// <summary>
+        /// Получение изображения
+        /// </summary>
+        /// <returns></returns>
         public static List<Image> GetImages()
         {
             string wanted_path = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));

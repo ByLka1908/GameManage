@@ -8,6 +8,12 @@ namespace GamesManager.BL
 {
     class Auntifucation
     {
+        /// <summary>
+        /// Аунтификатор
+        /// </summary>
+        /// <param name="login"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static DB.User AuntifucationUser(string login, string password)
         {
             try

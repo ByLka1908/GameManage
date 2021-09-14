@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GamesManager.BL
 {
-    class ViewGames
+    public class ViewGames
     {
         public DB.Games Games { get; set; }
 
@@ -28,7 +28,10 @@ namespace GamesManager.BL
         public int EpicID { get; set; }
         public int UbisoftID { get; set; }
 
-
+        /// <summary>
+        /// Получение данных из бд
+        /// </summary>
+        /// <param name="games"></param>
         public ViewGames(DB.Games games)
         {
             Games = games;
