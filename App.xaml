@@ -1,0 +1,11 @@
+﻿<Application x:Class="GamesManager.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:GamesManager"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="br1" Color="#FFFFFF"></SolidColorBrush>
+        <SolidColorBrush x:Key="br2" Color="#FFC1C1"></SolidColorBrush>
+        <SolidColorBrush x:Key="br3" Color="#D32B39"></SolidColorBrush>
+    </Application.Resources>
+</Application>

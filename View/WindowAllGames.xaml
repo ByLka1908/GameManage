@@ -1,0 +1,81 @@
+﻿<Window x:Class="GamesManager.View.WindowAllGames"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GamesManager.View"
+        mc:Ignorable="d"
+        Title="Все игры" MinHeight="500" MinWidth="600" MaxHeight="1000" MaxWidth="1000"
+        SizeToContent="WidthAndHeight" FontFamily="Verdana">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Grid.Column="0" HorizontalAlignment="Left"
+                    Grid.Row="0" Grid.RowSpan="2">
+            <Button Background="{StaticResource br3}" Padding="5" Margin="10" x:Name="btExist"
+                    Click="btExist_Click" ToolTip="В меню">Назад</Button>
+        </StackPanel>
+
+        <!--Строка поиска-->
+        <StackPanel Margin="5" Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+
+            <TextBox Background="{StaticResource br2}" x:Name="tbSearch" TextChanged="tbSearch_TextChanged" Padding="2" Margin="5"
+                     VerticalAlignment="Center" MinWidth="100" ToolTip="Введите для поиска имя"></TextBox>
+
+            <ComboBox Name="cbSort" Background="{StaticResource br3}" Margin="5"
+                      MinWidth="100" ToolTip="Сортировка по магазинам" SelectionChanged="cbSort_SelectionChanged"/>
+
+            <Label Margin="5" Name="lbCol"></Label>
+
+            <Button Background="{StaticResource br3}" x:Name="btAddGame" Click="btAddGame_Click">Добавить игру в список</Button>
+        </StackPanel>
+
+        <Border Grid.Row ="1" Grid.Column="1" BorderBrush="Black" BorderThickness="2">
+            <ListBox x:Name="lbContent">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border ToolTip="Кликните дважды чтобы отредактировать" HorizontalAlignment="center"
+                                BorderBrush="Black" BorderThickness="2">
+                            <Grid HorizontalAlignment="Stretch" Margin="25">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition MinWidth="200" Width="400"/>
+                                    <ColumnDefinition Width="250"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <Image MaxHeight="70" MaxWidth="70" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                                       Source="{Binding Image}"/>
+
+
+                                <Label Grid.Column="1"  Grid.Row="0" Content="{Binding Name}"/>
+                                <Label Grid.Column="1"  Grid.Row="1" Content="{Binding Price}"/>
+                                <Label Grid.Column="1"  Grid.Row="2" Content="{Binding Discription}"/>
+                                <Label Grid.Column="2" Grid.Row="1" Content="{Binding Store}"/>
+                                <Label Grid.Column="2" Grid.Row="2" Content="{Binding StoreUbisoft}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
+        <StackPanel x:Name="spButtons" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
+        </StackPanel>
+        <Label Grid.Row="2" Grid.Column="0" Name="lbList"></Label>
+    </Grid>
+</Window>

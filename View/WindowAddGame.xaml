@@ -1,0 +1,75 @@
+﻿<Window x:Class="GamesManager.View.WindowAddGame"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GamesManager.View"
+        mc:Ignorable="d"
+        Title="Добавить игру" MinHeight="500" MaxHeight="1000" MinWidth="400"  MaxWidth="1000"
+        SizeToContent="WidthAndHeight" FontFamily="Verdana">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" HorizontalAlignment="Left">
+            <Button Background="{StaticResource br2}" Padding="5" Margin="10" x:Name="btDn" Click="btDn_Click">Назад</Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock Margin="5">Введите название игры</TextBlock>
+                <TextBox Background="{StaticResource br2}" MinWidth="100" Margin="5" x:Name="tbName"></TextBox>
+            </StackPanel>
+
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock Margin="5">Введите описание</TextBlock>
+                <TextBox Background="{StaticResource br2}" MinWidth="100" Margin="5" x:Name="tbDescription"></TextBox>
+            </StackPanel>
+
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock Margin="5">Введите цену</TextBlock>
+                <TextBox Background="{StaticResource br2}" MinWidth="100" Margin="5" x:Name="tbPrice"></TextBox>
+            </StackPanel>
+
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock Margin="5">Есть ли в Steam</TextBlock>
+                <ComboBox Margin="5" Name="cbSteam"></ComboBox>
+            </StackPanel>
+
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock Margin="5">Есть ли в Epic</TextBlock>
+                <ComboBox Margin="5" Name="cbEpic"></ComboBox>
+            </StackPanel>
+
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock Margin="5">Есть ли в Ubisoft store</TextBlock>
+                <ComboBox Margin="5" Name="cbUbisoft"></ComboBox>
+            </StackPanel>
+
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock Margin="5">Изображения</TextBlock>
+                <ComboBox Margin="5" Name="cbImage">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0">
+                                    <Image Width="40" Height="40" Source="{Binding ImagePath}"/>
+                                </Border>
+                                <TextBlock Grid.Column="1" Margin="5" Text="{Binding NameImage}"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <Button Click="btAdd_Click" Margin="5" Background="{StaticResource br2}" x:Name="btAdd">Добавить в бд</Button>
+        </StackPanel>
+    </Grid>
+</Window>
